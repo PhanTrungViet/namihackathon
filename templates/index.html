@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nami Blockchain Hackathon</title>
+</head>
+<body>
+    <h1>Blockchain</h1>
+    <h2>Blocks</h2>
+    <p>Current block count: {{ block_count }}</p>
+    <h3>10 latest blocks:</h3>
+    <ul>
+        {% for hash in last_10_blocks %}
+        <li><a href="/block/{{ hash }}">{{ hash }}</a></li>
+        {% endfor %}
+    </ul>
+
+    <h2>Unconfirmed transactions:</h2>
+    <table>
+        <tr>
+            <th>Key</th>
+            <th>Value</th>
+        </tr>
+        {% for tx in unconfirmed_txs %}
+            <tr>
+                    <td>{{ tx.key }}</td>
+                    <td>{{ tx.value }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

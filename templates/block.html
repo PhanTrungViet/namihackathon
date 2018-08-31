@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Block {{ block.hash_hex() }}</title>
+</head>
+<body>
+    <h1>Block {{ block.hash_hex() }}</h1>
+    <h2>Header</h2>
+    <ul>
+        <li>Hash: {{ block.hash_hex() }}</li>
+        <li>Previous hash: <a href="/block/{{ block.header.prev_hash.hex() }}">{{ block.header.prev_hash.hex() }}</a></li>
+        <li>Timestamp: {{ block.header.timestamp }}</li>
+        <li>Target: 0x{{ block.header.target[::-1].hex() }}</li>
+        <li>Tx hash: {{ block.header.tx_hash.hex() }}</li>
+        <li>Nonce: {{ block.header.nonce }}</li>
+    </ul>
+    <h2>Transactions: {{ block.tx_count }} txs</h2>
+    <table>
+        <tr>
+            <th>Key</th>
+            <th>Value</th>
+        </tr>
+        {% for tx in block.txs %}
+            <tr>
+                    <td>{{ tx.key }}</td>
+                    <td>{{ tx.value }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
